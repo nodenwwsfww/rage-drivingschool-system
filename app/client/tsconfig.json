@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+        "module": "es6",
+        "noImplicitAny": true,
+        "noImplicitUseStrict": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "lib": ["esnext"],
+        "sourceMap": false,
+    },
+    "include": [
+        "**/*"
+    ],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+}

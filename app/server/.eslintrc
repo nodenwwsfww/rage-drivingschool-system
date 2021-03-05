@@ -1,0 +1,102 @@
+{
+    "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+    "gtav"
+    ],
+    "globals": {
+    "mp": "writable"
+},
+    "plugins": [
+    "import"
+],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+    "project": "./tsconfig.json"
+},
+    "rules": {
+    "linebreak-style": "off",
+        "no-shadow": "off",
+        "import/no-unresolved": "off",
+        "import/namespace": "off",
+        "import/no-self-import": "off",
+        "import/extensions": "off",
+        "import/no-useless-path-segments": "off",
+        "import/no-duplicates": "off",
+        "import/export": "off",
+        "import/no-extraneous-dependencies": "off",
+        "prettier/prettier": [
+        "error",
+        {
+            "singleQuote": true,
+            "printWidth": 80,
+            "useTabs": false,
+            "tabWidth": 4,
+            "semi": true,
+            "trailingComma": "all",
+            "bracketSpacing": true,
+            "parser": "typescript",
+            "arrowParens": "avoid"
+        }
+    ],
+        "no-restricted-syntax": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "no-empty-function": "off",
+        "import/no-cycle": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
+        "class-methods-use-this": "off",
+        "no-useless-constructor": "off",
+        "import/no-named-as-default": "off",
+        "import/named": "off",
+        "no-use-before-define": "off",
+        "no-continue": "off",
+        "spaced-comment": [
+        "error",
+        "always",
+        {
+            "line": {
+                "exceptions": [
+                    "-",
+                    "+",
+                    "/"
+                ],
+                "markers": [
+                    "=",
+                    "/",
+                    "!"
+                ]
+            },
+            "block": {
+                "exceptions": [
+                    "-",
+                    "+"
+                ],
+                "markers": [
+                    "=",
+                    "!"
+                ],
+                "balanced": true
+            }
+        }
+    ]
+},
+    "overrides": [
+        {
+            "files": [
+                "**/*.ts"
+            ],
+            "parser": "@typescript-eslint/parser",
+            "rules": {
+                "no-undef": "off"
+            }
+        }
+
+]
+}

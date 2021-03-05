@@ -1,0 +1,1 @@
+player = mp.players.local;
