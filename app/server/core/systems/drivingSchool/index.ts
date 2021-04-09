@@ -163,7 +163,7 @@ class DrivingExam implements DrivingExamStaticFields {
             setTimeout(() => examData.vehicle.destroy(), 200);
             player.call('drivingSchool_destroyWorkObjects', []);
         } catch (e) {
-            logData(e);
+            logData(e.message);
         }
     }
 
@@ -186,7 +186,7 @@ class DrivingExam implements DrivingExamStaticFields {
                 )}" класса`,
             );
         } catch (e) {
-            logData(e);
+            logData(e.messasge);
         }
     }
 
@@ -214,7 +214,7 @@ class DrivingExam implements DrivingExamStaticFields {
             player.heading = this.examConfig.returnPlayerBackData.heading;
             player.dimension = this.examConfig.returnPlayerBackData.dimension;
         } catch (e) {
-            logData(e);
+            logData(e.message);
         }
     }
 
@@ -258,8 +258,12 @@ class DrivingExam implements DrivingExamStaticFields {
 
     // Здесь будет UI
     startExam(player: PlayerMp, licenseId: number): void {
-        const data = this.selectCarForPlayer(player, licenseId);
-        if (!data) return;
+        try {
+            const data = this.selectCarForPlayer(player, licenseId);
+            if (!data) throw new Error('Could not select car for player');
+        } catch(e) {
+            logData(e.message);
+        }
 
         const userId: string = player.getVariable('userId').toString(); // edit type on userId type
 
@@ -362,7 +366,7 @@ class DrivingExam implements DrivingExamStaticFields {
                         this.endExam(player, 'passed');
                     }
                 } catch (e) {
-                    logData(e);
+                    logData(e.message);
                 }
             },
         );

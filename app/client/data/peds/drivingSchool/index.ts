@@ -18,16 +18,20 @@ function sendPedMenu(pedData: PedData) {
 }
 
 function startDialogWithPlayer(pedData?: PedData) {
-    if (!pedData) return;
-    if (pedData?.name !== 'Виктория' && pedData?.name !== 'Михаил') return;
+    try {
+        if (!pedData) throw new Error('pedData is empty');
+        if (pedData?.name !== 'Виктория' && pedData?.name !== 'Михаил') throw new Error('unexpected ped name');
 
-    mp.gui.chat.push(`- Приветствую, что тебя интересует?`);
-    mp.gui.chat.push(`- Для ответа набери соответствующую цифру`);
-    mp.gui.chat.push(`- `);
-    mp.gui.chat.push(`- `);
+        mp.gui.chat.push(`- Приветствую, что тебя интересует?`);
+        mp.gui.chat.push(`- Для ответа набери соответствующую цифру`);
+        mp.gui.chat.push(`- `);
+        mp.gui.chat.push(`- `);
 
-    sendPedMenu(pedData);
-    savePedData('drivingSchool', 3, pedData);
+        sendPedMenu(pedData);
+        savePedData('drivingSchool', 3, pedData);
+    } catch(e) {
+        mp.console.logInfo(e.message);
+    }
 }
 
 mp.events.add('drivingSchool_startDialogWithPlayer', startDialogWithPlayer);
