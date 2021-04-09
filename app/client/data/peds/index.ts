@@ -55,22 +55,24 @@ try {
     };
 
     mp.events.add('playerEnterColshape', (shape: ColshapeMp) => {
-        if (keyShapes.includes(shape)) {
-            const pedData: PedData = getPedDataByShape(shape);
-            const keyCode: number | null = getActivateKeyCodeByPedData(pedData);
-            if (!keyCode) return;
+        try {
+            if (keyShapes.includes(shape)) {
+                const pedData: PedData = getPedDataByShape(shape);
+                const keyCode: number = getActivateKeyCodeByPedData(pedData);
 
-            // @ts-ignore
-            player.currentPedId = pedData.id;
-            mp.keys.bind(keyCode, true, keyPressHandler);
-        }
+                // @ts-ignore
+                player.currentPedId = pedData.id;
+                mp.keys.bind(keyCode, true, keyPressHandler);
+            }
+        } catch (e) {
+        mp.events.callRemote('handleClientError', JSON.stringify(e));
+    }
     });
 
     mp.events.add('playerExitColshape', (shape: ColshapeMp) => {
         if (keyShapes.includes(shape)) {
             const pedData: PedData = getPedDataByShape(shape);
-            const keyCode: number | null = getActivateKeyCodeByPedData(pedData);
-            if (!keyCode) return;
+            const keyCode: number = getActivateKeyCodeByPedData(pedData);
 
             mp.keys.unbind(keyCode, true, keyPressHandler);
 

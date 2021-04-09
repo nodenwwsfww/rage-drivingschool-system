@@ -44,7 +44,7 @@ mp.events.addCommand(
     },
 );
 
-mp.events.addCommand('tps', player => {
+mp.events.addCommand('tps', (player: PlayerMp) => {
     if (player.vehicle) {
         player.vehicle.position =
             examConfig.route[examConfig.route.length - 1].position;

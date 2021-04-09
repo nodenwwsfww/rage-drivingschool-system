@@ -32,12 +32,16 @@ export const savePedData = (
     );
 };
 
-export const getPedDataByShape = (shape: ColshapeMp): PedData | undefined =>
-    pedsData.find((ped: PedData) => ped.keySettings.shapeId === shape.id);
+export const getPedDataByShape = (shape: ColshapeMp): PedData => {
+    const result = pedsData.find((ped: PedData) => ped.keySettings.shapeId === shape.id);
+    if (!result) throw new Error('Could not find pedData in pedsData by shapeId');
+    return result;
+};
 
 export const getActivateKeyCodeByPedData = (
     pedData: PedData,
-): number | null => {
-    if (!pedData) return null;
-    return Number(pedData.keySettings.keyCode) || null;
+): number => {
+    const result = Number(pedData?.keySettings?.keyCode);
+    if (!result) throw new Error('Could not get pedData keyCode or parse keyCode to Number');
+    return result;
 };
